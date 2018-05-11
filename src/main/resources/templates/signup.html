@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org.thymeleaf-extras-springsecurity4">
+
+<head th:replace="/fragment/globaltemp::head"></head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="/fragment/globaltemp::navbar"></nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h1 class="mt-5">Sing Up</h1>
+            <form th:action="@{/saveuser}" th:object="${newUser}" method="post">
+                <input type="hidden" th:field="*{id}">
+                <div class="row form-userGroup">
+                    <label class="col-3 col-form-label" for="username">Username:</label>
+                    <input class="col-5 col-form-control" type="text" th:field="*{username}">
+                </div>
+                <div class="row form-userGroup">
+                    <label class="col-3 col-form-label" for="password">Password:</label>
+                    <input class="col-5 col-form-control" type="password" th:field="*{password}">
+                </div>
+                <div class="row form-userGroup">
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<div th:replace="/fragment/globaltemp::scripts"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org.thymeleaf-extras-springsecurity4">
+
+<head th:replace="/fragment/globaltemp::head"></head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="/fragment/globaltemp::navbar"></nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <div class="row">
+                <div th:fragment="adminnav" class="col-lg-3">
+                    <h4 class="mt-5">Admin Navs</h4>
+                    <ul class="list-unstyled">
+                        <a href="/admin/addquestion"><li>ADD Question</li></a>
+                        <li>VIEW Question List</li>
+                        <li>EDIT Questions</li>
+                        <li>EDIT Answers</li>
+                    </ul>
+                </div>
+                <div class="col-lg-9">
+                    <h1 class="mt-5">Choose your questions</h1>
+                    <form action="/admin/savequestion" method="post">
+
+                        <label for="numberOfQuestion">Number of Questions:</label>
+                        <input type="number" name="numberOfQuestion" id="numberOfQuestion" class="form-control" min="1" max="50" value="10">
+
+                        <label for="category">Select Category: </label>
+                        <select name="category" class="form-control">
+                            <option value="">Any Category</option>
+                            <option value="9">General Knowledge</option>
+                            <option value="10">Entertainment: Books</option>
+                            <option value="11">Entertainment: Film</option>
+                            <option value="12">Entertainment: Music</option>
+                            <option value="13">Entertainment: Musicals &amp; Theatres</option>
+                            <option value="14">Entertainment: Television</option>
+                            <option value="15">Entertainment: Video Games</option>
+                            <option value="16">Entertainment: Board Games</option>
+                            <option value="17">Science &amp; Nature</option>
+                            <option value="18">Science: Computers</option>
+                            <option value="19">Science: Mathematics</option>
+                            <option value="20">Mythology</option>
+                            <option value="21">Sports</option>
+                            <option value="22">Geography</option>
+                            <option value="23">History</option>
+                            <option value="24">Politics</option>
+                            <option value="25">Art</option>
+                            <option value="26">Celebrities</option>
+                            <option value="27">Animals</option>
+                            <option value="28">Vehicles</option>
+                            <option value="29">Entertainment: Comics</option>
+                            <option value="30">Science: Gadgets</option>
+                            <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
+                            <option value="32">Entertainment: Cartoon &amp; Animations</option>
+                        </select>
+
+                        <label for="difficulty">Select Difficulty: </label>
+                        <select name="difficulty" class="form-control">
+                            <option value="">Any Difficulty</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+
+                        <label for="type">Select Type: </label>
+                        <select name="type" class="form-control">>
+                            <option value="">Any Type</option>
+                            <option value="multiple">Multiple Choice</option>
+                            <option value="boolean">True / False</option>
+                        </select>
+
+                        <button class="btn btn-primary" type="submit">Get Your Question</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<div th:replace="/fragment/globaltemp::scripts"></div>
+
+</body>
+
+</html>

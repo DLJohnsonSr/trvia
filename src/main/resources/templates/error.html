@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org.thymeleaf-extras-springsecurity4">
+
+<head th:replace="/fragment/globaltemp::head"></head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="/fragment/globaltemp::navbar"></nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <div th:if="${status}==404">
+                <section id="not-found">
+                    <div id="title">Simple Pure CSS3 &bull; 404 Error Page</div>
+                    <div class="circles">
+                        <p>404<br>
+                            <small>PAGE NOT FOUND</small>
+                        </p>
+                        <span class="circle big"></span>
+                        <span class="circle med"></span>
+                        <span class="circle small"></span>
+                    </div>
+                </section>
+            </div>
+            <div th:if="${status}!=404">
+                <h3 th:text="'Error: '+${error}"></h3>
+                <h3 th:text="'Message: '+${message}"></h3>
+                <h3 th:text="'Status Code: '+${status}"></h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<div th:replace="/fragment/globaltemp::scripts"></div>
+
+</body>
+
+</html>
