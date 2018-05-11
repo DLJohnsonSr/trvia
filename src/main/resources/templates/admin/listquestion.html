@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org.thymeleaf-extras-springsecurity4">
+
+<head th:replace="/fragment/globaltemp::head"></head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="/fragment/globaltemp::navbar"></nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <div class="row">
+                <div th:replace="admin/admintemp::adminnav" class="col-lg-3"></ul>
+                </div>
+                <div class="col-lg-9">
+                    <h1 class="mt-5">Available Question</h1>
+                    <hr>
+                    <div th:each="eachQuestion:${adminQuestions}">
+                        <strong><span th:text="'Category: '+${eachQuestion.category}"></span></strong>
+                        <span th:text="' Type: '+${eachQuestion.type}"></span>
+                        <strong><span th:text="' Difficulty: '+${eachQuestion.difficulty}"></span></strong>
+                        <p th:text="'Question: '+${eachQuestion.question}"></p>
+                        <p th:text="'Correct Answer: '+${eachQuestion.correct_answer}"></p>
+                        <ul th:each="eachAnswer:${eachQuestion.incorrect_answers}" class="list-unstyled">
+                            <li th:text="'Incorrect Answer'+${eachAnswer}"></li>
+                        </ul>
+                        <a th:href="@{/admin/editquestion/{id}(id=${eachQuestion.id})}">EDIT Question</a>
+                        <a th:href="@{/admin/editanswers/{id}(id=${eachQuestion.id})}">EDIT Question</a>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<div th:replace="/fragment/globaltemp::scripts"></div>
+
+</body>
+
+</html>

@@ -10,14 +10,21 @@
 
 <!-- Page Content -->
 <div class="container">
-    <div class="row">
+    <div sec:authorize="authenticated" class="row">
         <div class="col-lg-12 text-center">
-            <h1 class="mt-5">A Bootstrap 4 Starter Template</h1>
-            <p class="lead">Complete with pre-defined file paths and responsive navigation!</p>
-            <ul class="list-unstyled">
-                <li>Bootstrap 4.1.1</li>
-                <li>jQuery 3.3.1</li>
-            </ul>
+            <h1 class="mt-5">Available Question</h1>
+            <hr>
+            <div th:each="eachQuestion:${questions}">
+                <strong><span th:text="'Category: '+${eachQuestion.category}"></span></strong>
+                <span th:text="' Type: '+${eachQuestion.type}"></span>
+                <strong><span th:text="' Difficulty: '+${eachQuestion.difficulty}"></span></strong>
+                <p th:text="'Question: '+${eachQuestion.question}"></p>
+                <p th:text="'Correct Answer: '+${eachQuestion.correct_answer}"></p>
+                <ul th:each="eachAnswer:${eachQuestion.incorrect_answers}" class="list-unstyled">
+                    <li th:text="'Incorrect Answer'+${eachAnswer}"></li>
+                </ul>
+            </div>
+        </div>
         </div>
     </div>
 </div>

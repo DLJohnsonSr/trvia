@@ -54,19 +54,25 @@ public class AdminController {
 
         RestTemplate restTemplate = new RestTemplate();
         Questions questions = restTemplate.getForObject(questionURL, Questions.class);
-//        for (Results eachResults:questions.getResults()){
-//            MyQuestion myQuestion = new MyQuestion();
-//            myQuestion.setCategory(eachResults.getCategory());
-//            myQuestion.setType(eachResults.getType());
-//            myQuestion.setDifficulty(eachResults.getDifficulty());
-//            myQuestion.setQuestion(eachResults.getQuestion());
-//            myQuestion.setCorrect_answer(eachResults.getCorrect_answer());
-//            myQuestion.setIncorrect_answers(eachResults.getIncorrect_answers());
-//            questionRepository.save(myQuestion);
-//        }
+
+        for (Results eachResults:questions.getResults()){
+            MyQuestion myQuestion = new MyQuestion();
+            myQuestion.setCategory(eachResults.getCategory());
+            myQuestion.setType(eachResults.getType());
+            myQuestion.setDifficulty(eachResults.getDifficulty());
+            myQuestion.setQuestion(eachResults.getQuestion());
+            myQuestion.setCorrect_answer(eachResults.getCorrect_answer());
+            myQuestion.setIncorrect_answers(eachResults.getIncorrect_answers());
+            questionRepository.save(myQuestion);
+        }
         System.out.println(questions.getResponse_code().toString());
         System.out.println(questions.getResults().toString());
         return "redirect:/admin/admindash";
+    }
+    @GetMapping("/admin/listquestion")
+    public String listQuestions(Model model){
+        model.addAttribute("adminQuestions",questionRepository.findAll());
+        return "admin/listquestion";
     }
 
 }

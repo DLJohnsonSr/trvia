@@ -1,6 +1,8 @@
 package com.d2j2.trvia.controllers;
 
 import com.d2j2.trvia.entities.AppUser;
+import com.d2j2.trvia.entities.MyQuestion;
+import com.d2j2.trvia.repositories.QuestionRepository;
 import com.d2j2.trvia.repositories.RoleRepository;
 import com.d2j2.trvia.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,12 @@ public class UserController {
     RoleRepository roleRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    QuestionRepository questionRepository;
 
     @GetMapping("/")
-    public String showHomePage(){
+    public String showHomePage(Model model){
+        model.addAttribute("questions", questionRepository.findAll());
         return "index";
     }
     @GetMapping("/signup")
